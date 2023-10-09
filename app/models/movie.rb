@@ -16,13 +16,21 @@ class Movie < ApplicationRecord
   validates(:director_id, presence: true)
   validates(:title, uniqueness: true)
 
-  def director
-    key = self.director_id
+  has_many(:characters)
+  # def characters
+  #   key = self.id
+  #   the_many = Character.where( {:movie_id => key })
+  #   return the_many
+  # end
 
-    matching_set = Director.where({ :id => key })
+  belongs_to(:director)
+  # def director
+  #   key = self.director_id
 
-    the_one = matching_set.at(0)
+  #   matching_set = Director.where({ :id => key })
 
-    return the_one
-  end
+  #   the_one = matching_set.at(0)
+
+  #   return the_one
+  # end
 end
